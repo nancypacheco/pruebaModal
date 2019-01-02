@@ -30,14 +30,13 @@
     <div class="container py-2">
         <div class="col-xs-3">
         
-        
-            <input type="text" id="buscar" name="buscar " >
-            <button onclick="buscar()">buscar</button>
-            <br><br>
+            
             <!--Usamos el id para poder manipular ese elemento en js y ponemos en class bootstrap para que nos genere los estilos-->
-            <input id="nombre" type="text" placeholder="Ingresa nombre" class="form-control my-2" size="10">
+            <input id="nombre" type="text" placeholder="Ingresa nombre" class="form-control my-2" >
             <br>
-            <input id="edad" type="text" placeholder="Ingresa  edad" class="form-control my-2">
+            <input id="apellido" type="text" placeholder="Ingresa apellido" class="form-control my-2" >
+            <br>
+            <input id="email" type="submit" placeholder="Ingresa  e-mail" class="form-control my-2">
             <br>
             <!--id=boton class= btn btn-success sirve                  . Onclick = capturar serà la FUNCIÒN q realizara, cuando el usuario haga
                 click cuando escriba sus datos ,pero para q se pueda ejecutar esa acciòn tendremos que indicarle en js-->
@@ -45,20 +44,7 @@
         </div>
     </div>
     <br>
-    <div class="container">
-        <table class="table" id="tabla">
-            <thead class="thead-inverse">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                </tr>
-            </thead>
-
-
-        </table>
-    </div>
-
-        </div>
+    
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -80,51 +66,26 @@
         //console.log("capturado");
         /* para capturar el nombre y la edad debemos crear una funcion para tranformar nombre y edad en un objeto y lo hacemos con js
         creamos en FUNCTION ,los parametros ò propiedades que tendrà persona en este caso tendrà un nombre y una edad */
-        function Persona(nombre, edad) {
+        function Persona(nombre,apellido,email) {
             this.nombre = nombre;
-            this.edad = edad;
+            this.apellido = apellido;
+            this.email = email;
         }
         //con està instrucciòn estamos capturando el nombre en una variable "VAR" y se va a guardar en donde dice var nombreCapturar//
         var nombreCapturar = document.getElementById("nombre").value;
         // console.log(nombreCapturar);
         //la variable nombreCapturar  guardarà el texto q esta escribiendo en usuario//
 
-        var edadCapturar = document.getElementById("edad").value;
+        var apellidoCapturar = document.getElementById("apellido").value;
+        var emailCapturar = document.getElementById("email").value;
         // console.log(edadCapturar);
         //vamos a crear un nuevo objeto//
-        nuevoSujeto = new Persona(nombreCapturar, edadCapturar);
+        nuevoSujeto = new Persona(nombreCapturar, apellidoCapturar,emailCapturar);
         console.log(nuevoSujeto);
         agregar();
 
-        /*a nuevoSujeto lo vamos a transformar en un array para poder almacenar
-         todos los nombres que nos vallan ingresando. */
-
-        /*Para hacer una variable global solo se pone el nombre de la variable eje:nuevoSujeto y si estàs utilizandolo
-        una variable en una funcion en concreto debes declararlo asi: var nuevoSujeto */
+        
     }
-    var baseDatos = [];
-    function agregar() {
-        //console.log("capturado");
-        // la variable nuevoSujeto pasa dentro del array con el mètodo PUSH para q se almacene en la baseDatos//
-        baseDatos.push(nuevoSujeto);
-        console.log(baseDatos);
-        /*con document.getElementById estamos generando un documento para detectar la tabla y con innerhtml estamos insertando html con las etiquetas 
-        propias de un html (<td> </td>) y asi agregamos un nuevo campo como nuevoSujeto que tiene una propiedad puntonombre con esto capturamos el nombre q se a insertado
-        y con nuevoSujeto.edad hacemos lo mismo, es decir Cada vez q se presione capturar se ejecutarà la funciòn agregar */
-        document.getElementById("tabla").innerHTML += '<tbody><td>' + nuevoSujeto.nombre + '</td><td>' + nuevoSujeto.edad + '</td></tbody>';
-
-
-    };
-
-    function buscar() {
-        coincidentes = []
-        baseDatos.forEach(function (fila, indice) {
-            
-            if (fila.nombre == document.getElementById('buscar').value) {
-                coincidentes.push(fila);
-                 console.log(fila.nombre);
-                 console.log(fila.edad);
-            }
-        });
-    }
+    
+        
 </script>
